@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { useLoaderData, useParams } from "react-router";
+import { bookContext } from "../../../context/BookContext";
 
 const BookDetails = () => {
   const { bookId } = useParams();
@@ -8,23 +9,8 @@ const BookDetails = () => {
 
   const expectedBook = books.find((book) => book.bookId == bookId);
 
-  const [storBook, setStorBook] = useState([]);
-  const handleRead = (currentBook) => {
-    //step 1:store book id or book object
-    //step 2:where to store
-    //step 3:array or collection
-    //step 4: if the book is already exist show a alert or toast
-    //step 5:if not then add the book in the array of collection
-    console.log(currentBook);
-    const isExistBook = storBook.find(
-      (book) => book.bookId == currentBook.bookId,
-    );
-    if (isExistBook) {
-      alert("the book is already exist");
-    } else {
-      setStorBook([...storBook, currentBook]);
-    }
-  };
+  const { handleRead, handleWishlist } = useContext(bookContext);
+  // console.log(handleRead, storBook);
 
   return (
     <>
@@ -78,7 +64,12 @@ const BookDetails = () => {
             >
               Mark as Read
             </button>
-            <button className="btn bg-[#50B1C9] text-white">Wishlist</button>
+            <button
+              onClick={() => handleWishlist(expectedBook)}
+              className="btn bg-[#50B1C9] text-white"
+            >
+              Add to Wishlist
+            </button>
           </div>
         </div>
       </div>
