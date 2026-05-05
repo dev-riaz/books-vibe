@@ -7,7 +7,7 @@ const Banner = () => {
         <div className="md:flex justify-center items-center flex-row-reverse md:text-start text-center">
           <img src={image} alt="" />
           <div className="space-y-10">
-            <h1 className="text-6xl playfair">
+            <h1 className="text-6xl">
               Books to freshen up your bookshelf
             </h1>
             <button className="btn bg-green-500 text-white">View The List</button>
